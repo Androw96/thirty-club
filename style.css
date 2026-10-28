@@ -1,0 +1,199 @@
+/* The Thirty Club — art deco klubest: fekete lakk, jáde, sárgaréz-arany, napsugár és lépcsőzetes keretek. Egyetlen sötét téma, szándékosan. */
+:root{
+  --ink:#0f1211;
+  --lacquer:#171c1b;
+  --jade:#1c3a32;
+  --gold:#c7a35a;
+  --gold-hi:#ecd496;
+  --gold-lo:#7d6029;
+  --cream:#f1e7d0;
+  --muted:#a59d88;
+  --line:rgba(199,163,90,.38);
+  --line-soft:rgba(199,163,90,.12);
+  --seal:#8a2f2a;
+  --f-display:"Limelight","Poiret One",Georgia,serif;
+  --f-deco:"Poiret One","Josefin Sans",Futura,sans-serif;
+  --f-body:"Josefin Sans",Futura,"Trebuchet MS",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;
+  background-color:var(--ink);
+  background-image:radial-gradient(circle at 50% 100%,transparent 0 21px,var(--line-soft) 21px 22px,transparent 22px 29px,var(--line-soft) 29px 30px,transparent 30px);
+  background-size:60px 30px;
+  color:var(--cream);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.65;
+}
+h1,h2,h3,h4{text-wrap:balance;font-weight:400;margin:0}
+p{margin:0}
+a{color:var(--gold-hi)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--line)}
+.masthead .wrap{max-width:1180px;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px}
+.brand{font-family:var(--f-display);font-size:1.5rem;color:var(--gold-hi);text-decoration:none;display:flex;align-items:center;gap:16px;letter-spacing:.06em}
+.brand span{font-family:var(--f-deco);font-size:.72rem;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+.edition{font-family:var(--f-deco);font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.edition i{font-style:normal;color:var(--gold);margin:0 .6em}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--jade) 0%,var(--ink) 80%);border-bottom:1px solid var(--line)}
+.rays{position:absolute;inset:0;pointer-events:none;
+  background:repeating-conic-gradient(from -90deg at 50% 64%,rgba(199,163,90,.15) 0deg 3deg,transparent 3deg 9deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 64%,#000 0 20%,transparent 66%);mask-image:radial-gradient(circle at 50% 64%,#000 0 20%,transparent 66%)}
+.hero-inner{position:relative;padding-block:48px 56px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+.eyebrow{font-family:var(--f-deco);letter-spacing:.4em;text-transform:uppercase;font-size:.82rem;color:var(--gold)}
+.hero h1{font-family:var(--f-display);font-size:clamp(2.4rem,8vw,4.6rem);line-height:1.05;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-hi)}
+.hero h1 small{display:block;font-family:var(--f-deco);font-size:.3em;letter-spacing:.6em;color:var(--gold);margin-bottom:.55em}
+.tagline{font-family:var(--f-deco);font-size:clamp(1.45rem,5vw,2.05rem);letter-spacing:.12em;color:var(--cream)}
+.lede{max-width:36ch;color:var(--muted);font-size:1.05rem}
+
+/* bezárt ajtó (meghívó nélkül) */
+.arch{position:relative;width:min(100%,320px);aspect-ratio:3/3.4;max-width:100%;display:grid;place-items:center;border:1px solid var(--line);border-radius:160px 160px 0 0;outline:1px solid var(--line);outline-offset:8px;background:radial-gradient(circle at 50% 70%,rgba(199,163,90,.1),transparent 70%)}
+.arch::before,.arch::after{content:"";position:absolute;bottom:-14px;width:12px;height:12px;border:1px solid var(--gold);background:var(--ink);transform:rotate(45deg)}
+.arch::before{left:-14px}.arch::after{right:-14px}
+.num{font-family:var(--f-display);font-size:clamp(7.5rem,34vw,11.5rem);line-height:1;padding-top:.15em;
+  background:linear-gradient(100deg,var(--gold-lo) 0%,var(--gold) 30%,var(--gold-hi) 45%,var(--cream) 50%,var(--gold-hi) 55%,var(--gold) 70%,var(--gold-lo) 100%);
+  background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.8s .4s ease-out 1 both}
+@keyframes shine{from{background-position:100% 0}to{background-position:0 0}}
+.door-note{max-width:40ch;color:var(--muted)}
+.door-note strong{display:block;font-family:var(--f-deco);font-weight:400;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;color:var(--gold-hi);margin-bottom:6px}
+
+/* ---------- boríték ---------- */
+.envelope{position:relative;display:block;width:min(440px,100%);aspect-ratio:440/270;padding:0;margin-top:8px;border:1px solid var(--gold-lo);background:repeating-linear-gradient(36deg,rgba(255,255,255,.015) 0 1px,transparent 1px 5px),var(--lacquer);box-shadow:0 30px 70px rgba(0,0,0,.65);isolation:isolate;perspective:1100px;transition:transform .5s}
+.envelope:hover{transform:translateY(-4px)}
+.letter{position:absolute;inset:12px 18px 18px;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding:22px 12px;background:var(--cream);color:var(--ink);border:1px solid var(--gold);box-shadow:inset 0 0 0 5px var(--cream),inset 0 0 0 6px var(--gold);transition:transform 1s .35s}
+.letter>span{font-family:var(--f-deco);font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-lo)}
+.letter strong{font-family:var(--f-display);font-weight:400;font-size:clamp(1.3rem,5vw,1.75rem);line-height:1.15;color:var(--jade);max-width:100%;overflow-wrap:anywhere}
+.letter i{font-style:normal;font-family:var(--f-deco);font-size:1rem;letter-spacing:.14em}
+.pocket{position:absolute;inset:0;z-index:3;background:linear-gradient(150deg,#1f2624,#0c0f0e 65%,#1a201e);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.pocket::after{content:"";position:absolute;inset:14px;border:1px solid var(--line);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.flap{position:absolute;inset:0;z-index:4;background:linear-gradient(170deg,#24423a,#13201d 70%);clip-path:polygon(0 0,100% 0,50% 60%);transform-origin:top;transition:transform .8s,z-index 0s .4s;filter:drop-shadow(0 1px 0 var(--gold))}
+.flap::after{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 150deg at 50% 0,rgba(199,163,90,.18) 0 2deg,transparent 2deg 10deg);clip-path:polygon(0 0,100% 0,50% 60%)}
+.seal{position:absolute;z-index:5;left:50%;top:58%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 32% 26%,var(--gold-hi) 0,var(--gold) 40%,var(--gold-lo) 78%,var(--gold) 100%);
+  box-shadow:0 7px 14px rgba(0,0,0,.6),inset 0 0 0 3px var(--gold-lo),inset 0 0 0 5px var(--gold-hi);transition:opacity .3s,transform .4s}
+.seal::before{content:"";position:absolute;inset:9px;border-radius:50%;background:repeating-conic-gradient(rgba(15,18,17,.18) 0 4deg,transparent 4deg 12deg)}
+.seal b{position:relative;font-family:var(--f-display);font-weight:400;font-size:2rem;color:var(--ink);text-shadow:0 1px 0 rgba(236,212,150,.7)}
+.envelope.open .flap{transform:rotateX(180deg);z-index:0}
+.envelope.open .seal{opacity:0;transform:scale(.8)}
+.envelope.open .letter{transform:translateY(-58%)}
+.envelope.open{margin-top:calc(min(440px,100vw - 32px) * .34);transition:transform .5s,margin-top .6s}
+.open-link{border:0;background:none;color:var(--gold-hi);font-family:var(--f-deco);font-size:.9rem;letter-spacing:.32em;text-transform:uppercase;padding:12px}
+.open-link span{margin-left:10px}
+
+/* ---------- gombok ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-body);font-weight:600;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:14px 24px;border:1px solid var(--gold);color:var(--ink);background:var(--gold);transition:background .2s,color .2s}
+.btn:hover{background:var(--gold-hi)}
+.btn.ghost{background:transparent;color:var(--gold-hi)}
+.btn.ghost:hover{background:var(--line-soft)}
+.btn.small{padding:8px 12px;font-size:.68rem;letter-spacing:.16em}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ---------- szekciók ---------- */
+section.block{padding-block:72px}
+section.block+section.block{padding-top:0}
+.head{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;margin-bottom:34px}
+.head .en{font-family:var(--f-deco);letter-spacing:.4em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
+.head h2{font-family:var(--f-display);font-size:clamp(1.7rem,5.5vw,2.4rem);letter-spacing:.07em;text-transform:uppercase;color:var(--gold-hi)}
+.rule{display:flex;align-items:center;gap:14px;width:min(100%,300px);margin-top:6px}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.rule::after{background:linear-gradient(270deg,transparent,var(--gold))}
+.rule i{width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg)}
+.prose{max-width:58ch;margin:0 auto;text-align:center;font-size:1.12rem;display:grid;gap:16px}
+.prose strong{font-weight:600;color:var(--gold-hi)}
+.invitation{scroll-margin-top:12px}
+
+/* ---------- belépőjegy ---------- */
+.ticket{position:relative;max-width:660px;margin:0 auto;padding:34px clamp(20px,5vw,44px);background:var(--lacquer);border:1px solid var(--gold);
+  -webkit-mask:radial-gradient(circle 14px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 14px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 14px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 14px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.ticket::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);pointer-events:none}
+.ticket-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-family:var(--f-deco);letter-spacing:.3em;text-transform:uppercase;font-size:.78rem;color:var(--gold);border-bottom:1px dashed var(--line);padding-bottom:14px;margin-bottom:22px}
+.ticket-top b{font-family:var(--f-display);font-weight:400;letter-spacing:.1em;font-size:1.1rem;color:var(--gold-hi)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px;margin:0}
+.fields>div{min-width:0}
+.fields dt{font-family:var(--f-deco);letter-spacing:.28em;text-transform:uppercase;font-size:.75rem;color:var(--gold)}
+.fields dd{margin:4px 0 0;font-size:1.18rem;font-weight:400;overflow-wrap:anywhere}
+.fields dd small{display:block;font-size:.88rem;font-weight:300;color:var(--muted);margin-top:2px}
+.tbd{color:var(--muted);font-style:italic}
+.ticket-foot{margin-top:22px;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;color:var(--muted);font-size:.95rem;text-align:center}
+.ticket-foot a{font-family:var(--f-deco);letter-spacing:.24em;text-transform:uppercase;font-size:.8rem;text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---------- program ---------- */
+.program{list-style:none;margin:0 auto;padding:0;max-width:620px;display:grid}
+.program li{display:grid;grid-template-columns:3.6rem minmax(0,1fr);gap:18px;align-items:baseline;padding-block:16px;border-bottom:1px solid var(--line-soft)}
+.program li:last-child{border-bottom:0}
+.program .no{font-family:var(--f-display);font-size:1.5rem;color:var(--gold-hi);text-align:center}
+.program h3{font-family:var(--f-body);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:.95rem}
+.program p{color:var(--muted);margin-top:2px}
+
+/* ---------- dress code ---------- */
+.dress{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.look{border:1px solid var(--line);padding:28px 26px;background:linear-gradient(180deg,rgba(28,58,50,.35),transparent)}
+.look h3{font-family:var(--f-display);font-size:1.35rem;letter-spacing:.08em;color:var(--gold-hi);text-align:center;margin-bottom:14px}
+.look ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.look li{position:relative;padding-left:20px}
+.look li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.aside{max-width:56ch;margin:28px auto 0;text-align:center;color:var(--muted);font-style:italic}
+
+/* ---------- visszajelzés ---------- */
+.rsvp-box{max-width:580px;margin:0 auto;border:1px solid var(--gold);outline:1px solid var(--line);outline-offset:6px;padding:32px clamp(18px,5vw,36px);background:var(--lacquer)}
+form{display:grid;gap:20px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+#form-fields{display:grid;gap:20px}
+.lbl,label.lbl{display:block;font-family:var(--f-deco);letter-spacing:.24em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
+.optional{letter-spacing:.1em;text-transform:none;color:var(--muted)}
+input[type=text],input[type=password],input[type=search],input[type=date],input[type=time],select,textarea{display:block;width:100%;margin-top:6px;padding:12px 2px;font-size:1.05rem;font-weight:400;color:var(--cream);background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0}
+select{background:var(--lacquer)}
+textarea{resize:vertical;min-height:84px}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--gold-hi)}
+::placeholder{color:#7d7666}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.choice{position:relative;display:inline-block}
+.choice input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.choice span{display:inline-block;padding:10px 18px;border:1px solid var(--line);font-weight:400;font-size:1rem;color:var(--cream)}
+.choice input:checked+span{border-color:var(--gold);background:var(--gold);color:var(--ink)}
+.choice input:focus-visible+span{outline:2px solid var(--gold-hi);outline-offset:3px}
+.check{display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:var(--muted);line-height:1.5}
+.check input{accent-color:var(--gold);flex-shrink:0;width:17px;height:17px;margin:2px 0 0}
+.notice{color:var(--gold-hi);font-size:.98rem;text-align:center}
+.notice:empty{display:none}
+.status{color:var(--gold-hi);font-size:.95rem;min-height:1.3em;text-align:center}
+.form-foot{display:flex;justify-content:center}
+.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+
+.telegram{font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.9;font-size:.95rem;outline:none}
+.tg-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--f-deco);font-weight:400;color:var(--gold);border-bottom:1px dashed var(--line);padding-bottom:10px;margin-bottom:16px}
+.telegram em{font-style:normal;color:var(--gold-hi)}
+.tg-actions{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.tg-actions small{flex-basis:100%;text-align:center;font-weight:300;letter-spacing:0;text-transform:none;color:var(--muted);font-size:.85rem}
+
+footer{border-top:1px solid var(--line);padding-block:40px 48px;text-align:center;color:var(--muted)}
+footer .brand-foot{font-family:var(--f-display);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-hi);font-size:1.2rem}
+footer p+p{margin-top:6px;font-family:var(--f-deco);letter-spacing:.3em;text-transform:uppercase;font-size:.78rem}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .brand span{display:none}
+  .edition{font-size:.66rem;letter-spacing:.2em}
+  section.block{padding-block:56px}
+  .fields,.dress{grid-template-columns:minmax(0,1fr)}
+  .program li{grid-template-columns:2.8rem minmax(0,1fr);gap:12px}
+  .seal{width:70px;height:70px;margin:-35px 0 0 -35px}
+  .seal b{font-size:1.65rem}
+  .letter{padding:14px 10px}
+  .letter>span{font-size:.62rem;letter-spacing:.28em}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .num{background-position:50% 0}
+}

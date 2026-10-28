@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0f1211">
+<title>Thirty Club · Szervező</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&family=Poiret+One&family=Josefin+Sans:wght@300;400;600&display=swap">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./admin.css">
+<script src="./admin.js" defer></script>
+</head>
+<body>
+<header class="masthead"><div class="wrap"><a href="./" class="brand">TC<span>Szervezői felület</span></a><span class="edition">30th <i>◆</i> in the 30s</span></div></header>
+
+<main class="admin wrap">
+  <p class="eyebrow">Csak szervezőknek</p>
+  <h1>A klub vendéglistája</h1>
+
+  <form id="login" class="panel">
+    <div><label class="lbl" for="login-key">Admin kulcs</label><input id="login-key" name="key" type="password" required autocomplete="current-password" spellcheck="false"></div>
+    <label class="check" for="login-remember"><input id="login-remember" name="remember" type="checkbox"><span>Emlékezz rám ezen az eszközön</span></label>
+    <div><button class="btn" type="submit">Belépés ↗</button></div>
+  </form>
+  <p id="status" class="notice" role="status" aria-live="polite"></p>
+
+  <div id="app" hidden>
+    <div class="stats">
+      <div><span>Meghívott</span><strong id="s-invited">0</strong></div>
+      <div><span>Megnyitotta</span><strong id="s-opened">0</strong></div>
+      <div><span>Jön (fővel)</span><strong id="s-heads">0</strong></div>
+      <div><span>Nem jön</span><strong id="s-no">0</strong></div>
+      <div><span>Nem válaszolt</span><strong id="s-pending">0</strong></div>
+    </div>
+
+    <div class="two">
+      <section class="panel" aria-labelledby="add-title">
+        <h2 id="add-title">Vendégek meghívása</h2>
+        <form id="add-form">
+          <div><label class="lbl" for="add-names">Nevek, soronként egy</label><textarea id="add-names" rows="5" placeholder="Peti&#10;Kovács Anna&#10;Bence és Zsófi"></textarea><p class="hint">Úgy írd, ahogy a meghívón szólítanád őket. Minden név külön linket kap.</p></div>
+          <label class="check" for="add-plus"><input id="add-plus" type="checkbox"><span>Partnert is hozhatnak (+1)</span></label>
+          <div><button class="btn" type="submit">Meghívók létrehozása</button></div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="event-title">
+        <h2 id="event-title">Az est adatai</h2>
+        <form id="event-form">
+          <div class="row2">
+            <div><label class="lbl" for="ev-date">Dátum</label><input id="ev-date" type="date"></div>
+            <div><label class="lbl" for="ev-time">Kezdés</label><input id="ev-time" type="time" step="300"></div>
+          </div>
+          <div><label class="lbl" for="ev-venue">Helyszín</label><input id="ev-venue" type="text" maxlength="120"></div>
+          <div><label class="lbl" for="ev-city">Település</label><input id="ev-city" type="text" maxlength="120"></div>
+          <div><label class="lbl" for="ev-note">Megjegyzés a jegyen</label><input id="ev-note" type="text" maxlength="300"></div>
+          <label class="check" for="ev-open"><input id="ev-open" type="checkbox"><span>A vendégek visszajelezhetnek</span></label>
+          <div><button class="btn" type="submit">Mentés</button></div>
+          <p class="hint">Ha a dátum üres, a meghívón „Hamarosan” látszik. Mentés után a vendégek a következő megnyitáskor már az új adatokat látják.</p>
+        </form>
+      </section>
+    </div>
+
+    <section aria-labelledby="list-title">
+      <h2 id="list-title" class="sr-only">Vendéglista</h2>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Keresés név, partner vagy megjegyzés alapján…" aria-label="Keresés">
+        <select id="filter" aria-label="Szűrés">
+          <option value="all">Mindenki</option>
+          <option value="yes">Jön</option>
+          <option value="no">Nem jön</option>
+          <option value="pending">Nem válaszolt</option>
+          <option value="unopened">Meg sem nyitotta</option>
+          <option value="notes">Van megjegyzése</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button id="refresh" class="btn ghost small" type="button">Frissítés ↻</button>
+        <button id="export" class="btn ghost small" type="button">CSV letöltése ↓</button>
+        <a id="sheet-link" class="btn ghost small" target="_blank" rel="noopener" hidden>Google Táblázat ↗</a>
+        <button id="logout" class="btn ghost small" type="button">Kilépés</button>
+      </div>
+      <p id="count" class="hint"></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Vendég</th><th>Állapot</th><th>Partner</th><th>Megjegyzés</th><th>Megnyitva</th><th>Meghívó</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
+</main>
+
+<footer><div class="wrap"><p class="brand-foot">The Thirty Club</p><p>Az adatok a privát Google Táblázatodban vannak</p></div></footer>
+</body>
+</html>

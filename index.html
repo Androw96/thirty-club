@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1211">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="The Thirty Club · 30th in the 30s. Zártkörű születésnapi est a harmincas évek stílusában.">
+<meta property="og:title" content="The Thirty Club · 30th in the 30s">
+<meta property="og:description" content="Személyes meghívó egy harmincas évekbeli születésnapi estére.">
+<title>The Thirty Club · 30th in the 30s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&family=Poiret+One&family=Josefin+Sans:wght@300;400;600&display=swap">
+<link rel="stylesheet" href="./style.css">
+<script src="./app.js" defer></script>
+</head>
+<body>
+<header class="masthead"><div class="wrap"><a href="./" class="brand">TC<span>Private invitation</span></a><span class="edition">30th <i>◆</i> in the 30s</span></div></header>
+
+<main>
+  <section class="hero">
+    <div class="rays" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow" id="hero-eyebrow">Zártkörű est · Est. 1996</p>
+      <h1><small>Welcome to</small>The Thirty Club</h1>
+      <p class="tagline">30th in the 30s</p>
+
+      <div id="door" class="hero-inner" style="padding:0">
+        <div class="arch" aria-hidden="true"><span class="num">30</span></div>
+        <p class="door-note" id="door-note" role="status"><strong>Egy pillanat</strong>A meghívód betöltése…</p>
+      </div>
+
+      <div id="invited" hidden>
+        <div class="hero-inner" style="padding:0">
+          <p class="lede" id="hero-lede"></p>
+          <button class="envelope" id="envelope" type="button" aria-expanded="false" aria-controls="invitation" aria-label="A pecsétes meghívó kinyitása">
+            <span class="letter"><span>Admit one</span><strong id="letter-name">Vendég</strong><i>The Thirty Club</i></span>
+            <span class="pocket"></span><span class="flap"></span>
+            <span class="seal"><b>30</b></span>
+          </button>
+          <button class="open-link" id="open-link" type="button" aria-controls="invitation">Töltsd fel a poharad, nyisd ki <span>↓</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="invitation" id="invitation" hidden>
+    <section class="block">
+      <div class="wrap">
+        <div class="head"><span class="en">The invitation</span><h2 id="greeting">Kedves Vendég!</h2><span class="rule"><i></i></span></div>
+        <div class="prose">
+          <p>Harminc leszek, és ezt úgy ünnepeljük, ahogy a harmincas években szokás volt: jazzel, swinggel, pezsgővel, és estélyi nélkül senki nem lép be a klubba.</p>
+          <p>Öltözz úgy, mintha <strong>1930-at írnánk</strong>, és hozd a legjobb táncos lépéseidet. Lesz pezsgő, swing, torta, és egy este, amire harminc év múlva is emlékezni fogunk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <div class="head"><span class="en">Admit one</span><h2>A belépőjegyed</h2><span class="rule"><i></i></span></div>
+        <div class="ticket">
+          <div class="ticket-top"><span>The Thirty Club</span><b id="ticket-no">No. 030</b></div>
+          <dl class="fields">
+            <div><dt>Vendég</dt><dd id="t-guest">—</dd></div>
+            <div><dt>Mikor</dt><dd id="t-when"><span class="tbd">Hamarosan</span></dd></div>
+            <div><dt>Hol</dt><dd id="t-where">—</dd></div>
+            <div><dt>Jelszó az ajtónál</dt><dd>„Swing harminc”</dd></div>
+          </dl>
+          <div class="ticket-foot"><span id="t-note"></span><a id="map-link" href="#" target="_blank" rel="noopener" hidden>Térkép ↗</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <div class="head"><span class="en">The evening</span><h2>Az est menete</h2><span class="rule"><i></i></span></div>
+        <ol class="program">
+          <li><span class="no" aria-hidden="true">I</span><div><h3>Érkezés</h3><p>Pezsgő és welcome koktél. A jelszót ne felejtsd otthon.</p></div></li>
+          <li><span class="no" aria-hidden="true">II</span><div><h3>Pohárköszöntő</h3><p>Pár szó a harminc évről, aztán koccintás.</p></div></li>
+          <li><span class="no" aria-hidden="true">III</span><div><h3>Vacsora</h3><p>Asztalhoz ülünk, ahogy egy rendes klubestén illik.</p></div></li>
+          <li><span class="no" aria-hidden="true">IV</span><div><h3>Torta</h3><p>Pontosan harminc gyertya. Kívánni ér.</p></div></li>
+          <li><span class="no" aria-hidden="true">V</span><div><h3>Swing hajnalig</h3><p>Tánc, koktélok, régi lemezek és mai slágerek swing-hangszerelésben.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block" id="dresscode">
+      <div class="wrap">
+        <div class="head"><span class="en">Dress code</span><h2>Öltözz ki</h2><span class="rule"><i></i></span></div>
+        <div class="dress">
+          <div class="look">
+            <h3>Uraknak</h3>
+            <ul>
+              <li>Háromrészes öltöny vagy szmoking</li>
+              <li>Csokornyakkendő vagy keskeny, mintás nyakkendő</li>
+              <li>Nadrágtartó, zsebóra, díszzsebkendő</li>
+              <li>Kalap, ha van: fedora vagy homburg</li>
+              <li>Hátrafésült, fényes haj</li>
+            </ul>
+          </div>
+          <div class="look">
+            <h3>Hölgyeknek</h3>
+            <ul>
+              <li>Hosszú, ferdén szabott szatén- vagy selyemruha</li>
+              <li>Hullámos frizura vagy oldalra fésült loknik</li>
+              <li>Gyöngysor, hosszú kesztyű, stóla</li>
+              <li>Vörös rúzs, vékony ívű szemöldök</li>
+              <li>Pántos, alacsony sarkú tánccipő</li>
+            </ul>
+          </div>
+        </div>
+        <p class="aside">Tipp: a rojtos, flitteres charleston-ruha a húszas évek. A harmincas évek hosszabb, karcsúbb és fényesebb.</p>
+      </div>
+    </section>
+
+    <section class="block" id="rsvp">
+      <div class="wrap">
+        <div class="head"><span class="en">R.S.V.P.</span><h2>Számíthatunk rád?</h2><span class="rule"><i></i></span></div>
+        <div class="rsvp-box">
+          <form id="rsvp-form" novalidate>
+            <p id="config-notice" class="notice"></p>
+            <input type="text" id="rsvp-honey" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <fieldset id="form-fields">
+              <legend class="sr-only">Visszajelzés</legend>
+              <div>
+                <span class="lbl" id="attend-label">Ott leszel?</span>
+                <div class="choices" role="radiogroup" aria-labelledby="attend-label">
+                  <label class="choice"><input type="radio" id="rsvp-yes" name="attending" value="yes" checked><span>Ott leszek</span></label>
+                  <label class="choice"><input type="radio" id="rsvp-no" name="attending" value="no"><span>Sajnos nem jutok el</span></label>
+                </div>
+              </div>
+              <div id="plus-row" hidden>
+                <span class="lbl" id="plus-label">Hozol partnert?</span>
+                <div class="choices" role="radiogroup" aria-labelledby="plus-label">
+                  <label class="choice"><input type="radio" id="plus-no" name="plusOne" value="no" checked><span>Egyedül jövök</span></label>
+                  <label class="choice"><input type="radio" id="plus-yes" name="plusOne" value="yes"><span>Párommal jövök</span></label>
+                </div>
+                <div id="plus-name-row" hidden style="margin-top:14px">
+                  <label class="lbl" for="rsvp-plus-name">A partnered neve</label>
+                  <input type="text" id="rsvp-plus-name" name="plusOneName" maxlength="100" autocomplete="off" placeholder="pl. Kovács Anna">
+                </div>
+              </div>
+              <div>
+                <label class="lbl" for="rsvp-notes">Ételérzékenység, dalkérés <span class="optional">(nem kötelező)</span></label>
+                <textarea id="rsvp-notes" name="notes" rows="3" maxlength="2000" placeholder="pl. laktózmentes · Sing, Sing, Sing"></textarea>
+              </div>
+              <label class="check" for="rsvp-consent"><input type="checkbox" id="rsvp-consent" name="consent"><span>Hozzájárulok, hogy a szervező a válaszomat és a megjegyzésemet az est szervezéséhez kezelje.</span></label>
+              <div class="form-foot"><button class="btn" type="submit" id="rsvp-submit">Visszajelzés küldése ↗</button></div>
+            </fieldset>
+            <p class="status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="telegram" id="success" hidden tabindex="-1">
+            <div class="tg-head"><span>Távirat</span><span>The Thirty Club</span></div>
+            <p id="tg-text"></p>
+            <div class="tg-actions">
+              <div id="calendar-actions" class="tg-actions" style="margin:0" hidden>
+                <a id="google-calendar" class="btn" href="#" target="_blank" rel="noopener">Google Naptár ↗</a>
+                <button class="btn ghost" type="button" id="apple-calendar">Apple Naptár · .ics ↓</button>
+              </div>
+              <button class="btn ghost" type="button" id="edit-rsvp">Módosítom a válaszom</button>
+              <small id="edit-note">A válaszodat az est előtt bármikor módosíthatod ezen a linken.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap"><p class="brand-foot">The Thirty Club</p><p>1996 · 2026 · 30th in the 30s</p></div></footer>
+</body>
+</html>
