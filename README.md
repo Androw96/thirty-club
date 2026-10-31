@@ -1,4 +1,4 @@
-# The Thirty Club · 30th in the 30s
+# 30th in the 30s
 
 Zártkörű születésnapi meghívóoldal a harmincas évek stílusában. Önálló statikus GitHub Pages oldal (main ág / gyökér).
 

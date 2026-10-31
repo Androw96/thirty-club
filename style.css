@@ -1,4 +1,4 @@
-/* The Thirty Club — art deco klubest: fekete lakk, jáde, sárgaréz-arany, napsugár és lépcsőzetes keretek. Egyetlen sötét téma, szándékosan. */
+/* 30th in the 30s — art deco klubest: fekete lakk, jáde, sárgaréz-arany, napsugár és lépcsőzetes keretek. Egyetlen sötét téma, szándékosan. */
 :root{
   --ink:#0f1211;
   --lacquer:#171c1b;
@@ -50,7 +50,8 @@ button{cursor:pointer}
   -webkit-mask-image:radial-gradient(circle at 50% 64%,#000 0 20%,transparent 66%);mask-image:radial-gradient(circle at 50% 64%,#000 0 20%,transparent 66%)}
 .hero-inner{position:relative;padding-block:48px 56px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
 .eyebrow{font-family:var(--f-deco);letter-spacing:.4em;text-transform:uppercase;font-size:.82rem;color:var(--gold)}
-.hero h1{font-family:var(--f-display);font-size:clamp(2.4rem,8vw,4.6rem);line-height:1.05;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-hi)}
+.hero h1{font-family:var(--f-display);font-size:clamp(2.6rem,9vw,5rem);line-height:1.05;letter-spacing:.03em;color:var(--gold-hi)}
+.hero h1 small{text-transform:uppercase}
 .hero h1 small{display:block;font-family:var(--f-deco);font-size:.3em;letter-spacing:.6em;color:var(--gold);margin-bottom:.55em}
 .tagline{font-family:var(--f-deco);font-size:clamp(1.45rem,5vw,2.05rem);letter-spacing:.12em;color:var(--cream)}
 .lede{max-width:36ch;color:var(--muted);font-size:1.05rem}

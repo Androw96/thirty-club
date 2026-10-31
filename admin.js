@@ -44,7 +44,7 @@ async function load() {
 
 /* ---------- linkek és másolás ---------- */
 const inviteUrl = g => new URL('./?m=' + encodeURIComponent(g.token), location.href).href;
-const inviteMessage = g => `Szia ${g.name}! Harminc leszek, és ezt a harmincas évek stílusában ünnepeljük: The Thirty Club, 30th in the 30s. Itt a személyes meghívód, kérlek, jelezz vissza rajta: ${inviteUrl(g)}`;
+const inviteMessage = g => `Szia ${g.name}! Harminc leszek, és ezt a harmincas évek stílusában ünnepeljük: 30th in the 30s. Itt a személyes meghívód, kérlek, jelezz vissza rajta: ${inviteUrl(g)}`;
 async function copy(text, done) {
   try { await navigator.clipboard.writeText(text); toast(done); }
   catch {
@@ -185,7 +185,7 @@ $('#export').addEventListener('click', () => {
   const rows = [['Név', 'Válasz', 'Fő', 'Partner', 'Megjegyzés', 'Válasz ideje', 'Megnyitások', 'Utolsó megnyitás', 'Meghívó link'],
     ...guests.map(g => [g.name, g.response === 'yes' ? 'Jön' : g.response === 'no' ? 'Nem jön' : 'Nincs válasz', heads(g), g.plusOneComing ? g.plusOneName : '', g.notes, fmt(g.respondedAt), g.opens, fmt(g.lastOpen), inviteUrl(g)])];
   const url = URL.createObjectURL(new Blob(['﻿' + rows.map(r => r.map(cell).join(';')).join('\r\n')], { type: 'text/csv;charset=utf-8' }));
-  const a = document.createElement('a'); a.href = url; a.download = 'thirty-club-vendeglista.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const a = document.createElement('a'); a.href = url; a.download = '30th-in-the-30s-vendeglista.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 key = store.get();

@@ -60,7 +60,7 @@ function render() {
   $('#hero-lede').textContent = `Kedves ${guest.name}, a klub ajtaja nyitva áll előtted.`;
   $('#letter-name').textContent = guest.name;
   $('#greeting').textContent = `Kedves ${guest.name}!`;
-  document.title = `${guest.name} · The Thirty Club`;
+  document.title = `${guest.name} · 30th in the 30s`;
   renderEvent();
   renderForm();
   if (guest.response) showSuccess(false);
@@ -139,8 +139,8 @@ function notifyByEmail() {
     'Részvétel': guest.response === 'yes' ? 'Jön' : 'Nem jön',
     'Partner': guest.plusOneComing ? (guest.plusOneName || 'Igen') : '—',
     'Megjegyzés': guest.notes || '—',
-    'Esemény': 'The Thirty Club · 30th in the 30s',
-    _subject: `Thirty Club · ${guest.name}: ${guest.response === 'yes' ? 'jön' : 'nem jön'}`,
+    'Esemény': '30th in the 30s',
+    _subject: `30th in the 30s · ${guest.name}: ${guest.response === 'yes' ? 'jön' : 'nem jön'}`,
     _template: 'table', _honey: ''
   };
   fetch('https://formsubmit.co/ajax/' + encodeURIComponent(config.formId), { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload), keepalive: true }).catch(() => {});
@@ -162,7 +162,7 @@ function showSuccess(focus) {
   const showCal = yes && !!event.start;
   $('#calendar-actions').hidden = !showCal;
   if (showCal) {
-    const p = new URLSearchParams({ action: 'TEMPLATE', text: 'The Thirty Club · 30th in the 30s', dates: `${calDate(event.start)}/${calDate(event.start)}`, location: location_(), details: calDetails(), ctz: 'Europe/Budapest' });
+    const p = new URLSearchParams({ action: 'TEMPLATE', text: '30th in the 30s', dates: `${calDate(event.start)}/${calDate(event.start)}`, location: location_(), details: calDetails(), ctz: 'Europe/Budapest' });
     $('#google-calendar').href = `https://calendar.google.com/calendar/render?${p}`;
   }
   $('#edit-rsvp').hidden = !event.registrationOpen;
@@ -187,9 +187,9 @@ function escapeICS(v) { return v.replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n')
 function fold(line) { let out = '', n = 0; for (const ch of line) { const len = new TextEncoder().encode(ch).length; if (n + len > 75) { out += '\r\n '; n = 1; } out += ch; n += len; } return out; }
 $('#apple-calendar').addEventListener('click', () => {
   if (!event?.start) return;
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Thirty Club//Invitation//HU', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT', `UID:thirty-club-${calDate(event.start)}@invitation.local`, `DTSTAMP:${calDate(new Date())}`, `DTSTART:${calDate(event.start)}`, 'SUMMARY:The Thirty Club · 30th in the 30s', `LOCATION:${escapeICS(location_())}`, `DESCRIPTION:${escapeICS(calDetails())}`, 'END:VEVENT', 'END:VCALENDAR'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//30th in the 30s//Invitation//HU', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT', `UID:thirty-club-${calDate(event.start)}@invitation.local`, `DTSTAMP:${calDate(new Date())}`, `DTSTART:${calDate(event.start)}`, 'SUMMARY:30th in the 30s', `LOCATION:${escapeICS(location_())}`, `DESCRIPTION:${escapeICS(calDetails())}`, 'END:VEVENT', 'END:VCALENDAR'];
   const url = URL.createObjectURL(new Blob([lines.map(fold).join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' }));
-  const a = document.createElement('a'); a.href = url; a.download = 'thirty-club.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const a = document.createElement('a'); a.href = url; a.download = '30th-in-the-30s.ics'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 boot();
