@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&family=Poiret+One&family=Josefin+Sans:wght@300;400;600&display=swap">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./admin.css">
+<script src="./texts.js" defer></script>
 <script src="./admin.js" defer></script>
 </head>
 <body>
@@ -89,6 +90,16 @@
           <thead><tr><th>Vendég</th><th>Állapot</th><th>Partner</th><th>Megjegyzés</th><th>Megnyitva</th><th>Meghívó</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
+      </div>
+    </section>
+
+    <section class="texts" id="texts" aria-labelledby="texts-title">
+      <h2 id="texts-title">A meghívó szövegei</h2>
+      <p class="hint">Itt a vendégoldal minden szövegét átírhatod. A <code>**csillagok közé**</code> írt rész félkövér lesz, az új sor sortörés. A kapcsos zárójeles részeket (például <code>{név}</code>) az oldal behelyettesíti. Ha egy mezőt üresen hagysz, az a rész nem jelenik meg. Mentés után a vendégek a következő megnyitáskor már az új szöveget látják. Előnézethez vedd fel magad tesztvendégnek, és nyisd meg a saját linkedet.</p>
+      <div id="text-groups"></div>
+      <div class="save-bar">
+        <span id="texts-state" class="hint" role="status" aria-live="polite">Nincs mentetlen változás.</span>
+        <button class="btn" type="button" id="texts-save">Szövegek mentése</button>
       </div>
     </section>
   </div>

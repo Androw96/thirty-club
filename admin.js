@@ -1,11 +1,12 @@
 const $ = s => document.querySelector(s);
+const T = window.TC;
 const KEY_NAME = 'tc-admin-key';
 const store = {
   get() { try { return sessionStorage.getItem(KEY_NAME) || localStorage.getItem(KEY_NAME) || ''; } catch { return ''; } },
   set(k, remember) { try { sessionStorage.setItem(KEY_NAME, k); if (remember) localStorage.setItem(KEY_NAME, k); } catch {} },
   clear() { try { sessionStorage.removeItem(KEY_NAME); localStorage.removeItem(KEY_NAME); } catch {} }
 };
-let sheetUrl = '', key = '', guests = [], event = {}, editing = '';
+let sheetUrl = '', key = '', guests = [], event = {}, editing = '', textsDirty = false;
 const status = t => { $('#status').textContent = t; };
 const configReady = fetch('./event.json', { cache: 'no-store' }).then(r => r.json()).then(d => { sheetUrl = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(d.sheetUrl || '') ? d.sheetUrl : ''; }).catch(() => {});
 
@@ -33,6 +34,7 @@ async function load() {
     const data = await api({ action: 'list' });
     guests = data.guests.map(g => ({ ...g, createdT: Date.parse(g.created) || 0 })).sort((a, b) => a.createdT - b.createdT);
     event = data.event;
+    if (!textsDirty) { T.set(data.texts || {}); renderTexts(); }
     if (data.sheetUrl) { $('#sheet-link').href = data.sheetUrl; $('#sheet-link').hidden = false; }
     $('#login').hidden = true; $('#app').hidden = false;
     status('');
@@ -44,7 +46,7 @@ async function load() {
 
 /* ---------- linkek és másolás ---------- */
 const inviteUrl = g => new URL('./?m=' + encodeURIComponent(g.token), location.href).href;
-const inviteMessage = g => `Szia ${g.name}! Harminc leszek, és ezt a harmincas évek stílusában ünnepeljük: 30th in the 30s. Itt a személyes meghívód, kérlek, jelezz vissza rajta: ${inviteUrl(g)}`;
+const inviteMessage = g => T.get('admin.message', { 'név': g.name, link: inviteUrl(g) });
 async function copy(text, done) {
   try { await navigator.clipboard.writeText(text); toast(done); }
   catch {
@@ -169,6 +171,60 @@ $('#event-form').addEventListener('submit', async e => {
   } catch (err) { toast(err.message); }
   b.disabled = false;
 });
+
+/* ---------- szövegek ---------- */
+const fieldId = k => 'tx-' + k.replace(/\./g, '-');
+function rowsFor(v) { return Math.min(10, Math.max(1, v.split('\n').length + Math.floor(v.length / 80))); }
+function setDirty(d) {
+  textsDirty = d;
+  $('#texts-state').textContent = d ? 'Nem mentett változások vannak.' : 'Nincs mentetlen változás.';
+  $('#texts-state').classList.toggle('dirty', d);
+}
+function renderTexts() {
+  const wrap = $('#text-groups');
+  const open = new Set([...wrap.querySelectorAll('details[open]')].map(d => d.dataset.group));
+  wrap.replaceChildren();
+  const groups = [...new Set(T.list.map(t => t.group))];
+  for (const g of groups) {
+    const items = T.list.filter(t => t.group === g);
+    const det = document.createElement('details'); det.dataset.group = g; if (open.has(g)) det.open = true;
+    const sum = document.createElement('summary');
+    const changed = items.filter(t => T.raw(t.k) !== t.d).length;
+    sum.innerHTML = `<span>${T.esc(g)}</span><small>${items.length} szöveg${changed ? ` · ${changed} módosítva` : ''}</small>`;
+    det.append(sum);
+    const box = document.createElement('div'); box.className = 'tx-grid';
+    for (const t of items) {
+      const f = document.createElement('div'); f.className = 'tx-field';
+      const head = document.createElement('div'); head.className = 'tx-head';
+      const lbl = document.createElement('label'); lbl.className = 'lbl'; lbl.htmlFor = fieldId(t.k); lbl.textContent = t.label;
+      const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'tx-reset'; reset.textContent = 'Eredeti szöveg';
+      head.append(lbl, reset);
+      const ta = document.createElement('textarea'); ta.id = fieldId(t.k); ta.dataset.k = t.k; ta.value = T.raw(t.k); ta.rows = rowsFor(ta.value); ta.spellcheck = true;
+      const hint = document.createElement('p'); hint.className = 'hint';
+      hint.textContent = [t.type === 'list' ? 'Soronként egy tétel.' : t.type === 'program' ? 'Soronként egy pont: „Cím | leírás”. A római számokat az oldal teszi hozzá.' : '', t.vars ? `Behelyettesítés: ${t.vars}` : ''].filter(Boolean).join(' ');
+      const sync = () => { const ch = ta.value !== t.d; f.classList.toggle('changed', ch); reset.hidden = !ch; };
+      ta.addEventListener('input', () => { sync(); setDirty(true); });
+      reset.addEventListener('click', () => { ta.value = t.d; ta.rows = rowsFor(t.d); sync(); setDirty(true); ta.focus(); });
+      sync();
+      f.append(head, ta); if (hint.textContent) f.append(hint);
+      box.append(f);
+    }
+    det.append(box);
+    wrap.append(det);
+  }
+}
+$('#texts-save').addEventListener('click', async e => {
+  const b = e.currentTarget; b.disabled = true;
+  const texts = {};
+  document.querySelectorAll('#text-groups textarea').forEach(ta => { const d = T.defaults[ta.dataset.k]; const v = ta.value.replace(/\r\n/g, '\n'); if (v !== d) texts[ta.dataset.k] = v; });
+  try {
+    const res = await api({ action: 'saveTexts', texts });
+    T.set(res.texts || texts); setDirty(false); renderTexts();
+    toast('Szövegek elmentve. A vendégek a következő megnyitáskor már ezt látják.');
+  } catch (err) { toast(err.message); }
+  b.disabled = false;
+});
+addEventListener('beforeunload', e => { if (textsDirty) { e.preventDefault(); e.returnValue = ''; } });
 
 /* ---------- belépés, eszköztár ---------- */
 function logout(msg) { store.clear(); key = ''; guests = []; $('#rows').replaceChildren(); $('#app').hidden = true; $('#login').hidden = false; status(msg); }

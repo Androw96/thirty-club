@@ -60,3 +60,23 @@ td .sub{display:block;color:var(--muted);font-size:.82rem}
   td[data-label]::before{content:attr(data-label);display:block;font-family:var(--f-deco);color:var(--gold);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase}
   .row2{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ---------- szövegek ---------- */
+.texts{margin-top:48px}
+.texts>.hint{max-width:75ch;margin-bottom:18px}
+.texts code{font-family:ui-monospace,Menlo,monospace;font-size:.85em;color:var(--gold-hi)}
+.texts details{border:1px solid var(--line);background:var(--lacquer);margin-bottom:10px}
+.texts summary{cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;padding:16px 20px;font-family:var(--f-deco);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi);font-size:.9rem}
+.texts summary small{font-family:var(--f-body);letter-spacing:.04em;text-transform:none;color:var(--muted);font-size:.85rem}
+.texts details[open] summary{border-bottom:1px solid var(--line-soft)}
+.tx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px;padding:20px}
+.tx-field{min-width:0}
+.tx-field textarea{min-height:0;resize:vertical;font-size:1rem;line-height:1.5}
+.tx-field.changed textarea{border-bottom-color:var(--gold-hi)}
+.tx-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tx-reset{border:0;background:none;padding:0;color:var(--muted);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
+.tx-reset:hover{color:var(--gold-hi)}
+.save-bar{position:sticky;bottom:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px;padding:14px 0 calc(14px + env(safe-area-inset-bottom,0px));background:var(--ink);border-top:1px solid var(--line)}
+.save-bar .hint{margin:0}
+.save-bar .hint.dirty{color:var(--gold-hi)}
+@media (max-width:760px){.tx-grid{grid-template-columns:minmax(0,1fr);padding:16px}}

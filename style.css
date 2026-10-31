@@ -88,7 +88,9 @@ button{cursor:pointer}
 .envelope.open .letter{transform:translateY(-58%)}
 .envelope.open{margin-top:calc(min(440px,100vw - 32px) * .34);transition:transform .5s,margin-top .6s}
 .open-link{border:0;background:none;color:var(--gold-hi);font-family:var(--f-deco);font-size:.9rem;letter-spacing:.32em;text-transform:uppercase;padding:12px}
-.open-link span{margin-left:10px}
+.open-link .arrow{margin-left:4px}
+.brand b{font-weight:400}
+.t-pending [data-t],.t-pending #hero-eyebrow{visibility:hidden}
 
 /* ---------- gombok ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-body);font-weight:600;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:14px 24px;border:1px solid var(--gold);color:var(--ink);background:var(--gold);transition:background .2s,color .2s}
